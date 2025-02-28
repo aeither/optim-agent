@@ -48,5 +48,11 @@ PROMPT="withdraw all USDC on base" npx hardhat run scripts/offchainChat.ts --net
 ```
 
 ```bash
-PROMPT="i want to supply 0.1 USDC on base on 0xBc8Ee037F1E30bF4d7f2A558E708ea1115767F9c behalf with 0 as ref code" npx hardhat run scripts/offchainChat.ts --network base
+PROMPT="i want to supply 0.1 USDC on base on 0xdbF72378B3b30bdC326821738e3C3Fc5acebBaE7 behalf with 0 as ref code" npx hardhat run scripts/offchainChat.ts --network base
+
+PROMPT="i want to supply 0.1 USDC on base on 0xdbF72378B3b30bdC326821738e3C3Fc5acebBaE7 behalf with 0 as ref code" npx hardhat run scripts/onchainChat.ts --network base
 ```
+
+## Deploy
+
+npx hardhat run scripts/createAgent.ts 

@@ -52,7 +52,7 @@ contract NewAgent is OPAgent {
         // IERC20(asset).transferFrom(msg.sender, address(this), amount);
 
         // Approve the Pool contract to spend the asset
-        // IERC20(asset).approve(address(POOL), amount);
+        IERC20(asset).approve(address(POOL), amount);
 
         // Supply the asset to Aave
         POOL.supply(asset, amount, onBehalfOf, referralCode);
