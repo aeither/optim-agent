@@ -1,0 +1,29 @@
+{
+  "name": "acme-bot",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "cf-typegen": "wrangler types",
+    "dev": "bun run --hot src/index_dev.ts",
+    "dev:webhook": "wrangler dev",
+    "dev:2": "ngrok http --domain=basically-enough-clam.ngrok-free.app 8787",
+    "ship": "wrangler deploy",
+    "cmd": "bun run scripts/commands.ts",
+    "info": "bun run scripts/info.ts",
+    "secret": "wrangler secret put BOT_TOKEN"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@cloudflare/workers-types": "^4.20241205.0",
+    "@types/node": "^22.10.1",
+    "dotenv": "^16.4.7",
+    "typescript": "^5.7.2",
+    "wrangler": "^3.93.0"
+  },
+  "private": true,
+  "dependencies": {
+    "grammy": "^1.34.0"
+  }
+}

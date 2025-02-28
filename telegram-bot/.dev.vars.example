@@ -1,0 +1,26 @@
+# =========
+# DEV
+# =========
+# Telegram Bot
+
+# Use BOT_TOKEN_DEV
+NODE_ENV=development
+
+SETUP LINKS
+# https://api.telegram.org/bot<BOT_TOKEN>/getMe
+# https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<PROJECT_NAME>.akeon.workers.dev/<BOT_TOKEN>
+# https://api.telegram.org/bot<BOT_TOKEN>/deleteWebhook?drop_pending_updates=true
+# https://api.telegram.org/bot<token>/test/getMe
+
+BOT_TOKEN_DEV=
+BOT_TOKEN=
+BOT_INFO="""{
+"id": NUMBER,
+"is_bot": true,
+"first_name": "NAME",
+"username": "NAMEBOT",
+"can_join_groups": true,
+"can_read_all_group_messages": false,
+"supports_inline_queries": false,
+"can_connect_to_business": false
+}"""

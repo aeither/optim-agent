@@ -1,191 +1,67 @@
-#  Check INFO for more details
+# Lending Protocol Yield Maximizer
 
-...
+## Overview
+Lending Protocol Yield Maximizer is a smart DeFi tool that automatically finds the highest APY opportunities across Aave lending markets. Our protocol analyzes real-time interest rates, utilization ratios, and market conditions to recommend the most profitable tokens for supplying to Aave.
 
-# OPAgent: Onchain Perpetual Agent
+## Features
 
-![image](/image/ora-sun.png)
+### Optimal Yield Discovery
+- Continuously monitors Aave lending markets across multiple networks
+- Analyzes interest rate curves and utilization rates to identify the highest potential returns
+- Considers both variable and stable interest rates to maximize your earnings
 
-To gain a deeper understanding of the OP Agent's design, please refer to [this article](./article.md).
+### Simple User Interface
+- Supply tokens with a single click
+- Withdraw your assets and earned interest anytime
+- Clear visualization of current and historical APYs
 
-## Prerequisites
+### Smart Recommendations
+- Daily updated token recommendations based on current market conditions
+- Risk assessment for each recommendation
+- Projected earnings calculator
 
-Install the dependencies:
-```shell
-npm install
-```
+## How It Works
+1. **Analysis**: Our algorithm analyzes Aave's interest rate models, which adjust lending and borrowing rates based on supply and demand
+2. **Recommendation**: We identify tokens with optimal utilization rates (typically between 80-95%) that offer the best risk-adjusted returns
+3. **Supply**: Connect your wallet and supply the recommended tokens to start earning interest
+4. **Monitor**: Track your earnings and receive alerts when better opportunities arise
+5. **Withdraw**: Withdraw your assets and earned interest whenever you want
 
-Prepare your environment:
-```shell
-cp .env.example .env
-```
-Then, update the `.env` file with your own values.
-```shell
-PRIVATE_KEY=3d59c...
-BASE_MAINNET_RPC=https://...
-ETHERSCAN_API_KEY=XPP8...
-ORA_API_KEY=BASE:5FH4...
-```
-You can get your `ORA_API_KEY` from [here](https://rms.ora.io/).
+## Benefits
+- **Maximize Returns**: Earn significantly higher yields compared to manual selection
+- **Save Time**: No need to constantly monitor multiple markets and calculate optimal positions
+- **Reduce Risk**: Our recommendations consider market volatility and liquidity conditions
+- **Capital Efficiency**: Make your crypto assets work harder for you
 
-## Customize your opAgent
 
-Each opAgent corresponds to a smart contract on the blockchain.
+## Get APY
 
-### Create your agent
+```md
+4. **Ethereum Main**
+   - **Asset:** USDC
+   - **Supply Rate:** 4.14%
+   - **Supply Cap:** 4.7995B
+   - **Link:** [View Asset](https://app.aave.com/reserve-overview/?underlyingAsset=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48&marketName=proto_mainnet_v3)
 
-Create a copy of sample agent and name it "NewAgent".
-```shell
-cp contracts/examples/SimpleAgent.sol contracts/examples/NewAgent.sol
-```
+5. **Avalanche**
+   - **Asset:** USDC
+   - **Supply Rate:** 3.82%
+   - **Supply Cap:** 0.3000B
+   - **Link:** [View Asset](https://app.aave.com/reserve-overview/?underlyingAsset=0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e&marketName=proto_avalanche_v3)
 
-Inside `contracts/examples/NewAgent.sol`, change name of contract into `NewAgent` or any other name.
+### Relevant Considerations
 
-```js
-contract NewAgent is OPAgent {
+- **Liquidity and Supply Cap:** The supply cap indicates the maximum amount of the asset that can be supplied to the AAVE protocol. Higher supply caps, like that of USDC on Ethereum Main (4.7995B), suggest greater liquidity, but the APY is lower compared to other chains. Lower supply caps, like those on Arbitrum and Optimism, may indicate a more competitive yield environment, but could also lead to higher volatility in APY as demand fluctuates.
 
-  /// @notice Initialize the contract, binding it to a specified AIOracle contract
-  constructor(IAIOracle _aiOracle, string memory _modelName, string memory _systemPrompt) OPAgent(_aiOracle, _modelName, _systemPrompt) {}
+- **Chain Performance:** Different chains have varying levels of adoption and transaction costs. Arbitrum and Optimism are Layer 2 solutions that may offer faster transaction times and lower fees compared to Ethereum Main, which could enhance the overall yield experience.
 
-}
-```
+- **Risk Factors:** Always consider the risks associated with DeFi protocols, including smart contract risks, market volatility, and potential changes in supply rates. The APY can fluctuate based on market conditions and the utilization rate of the assets.
 
-There are some examples of opAgent shown in `contracts/examples`.
+- **Asset Stability:** USDC is a stablecoin, which generally provides lower risk compared to volatile assets like WETH. This makes it a more attractive option for conservative investors looking for yield without significant exposure to price fluctuations.
 
-Requirements:
-- You need to specify the contract name in the `contractName` field of the `deploy-config.json` file.
-- The contract name should be the same as the file name of the solidity contract and `contractName` of `deploy-config.json` file.
-- The solidity contract should be located in the `contracts/examples` folder.
+In conclusion, if you're looking for the best APY opportunity, supplying USDC on Arbitrum at 5.60% is currently the most lucrative option, followed closely by Optimism at 5.16%.
 
-### Customization 
-
-Take `contracts/examples/SimpleAgent.sol` as an example. 
-By inheriting from `OPAgent.sol`, you can get a very simple opAgent onchain.
-
-```js
-contract SimpleAgent is OPAgent {
-
-  /// @notice Initialize the contract, binding it to a specified AIOracle contract
-  constructor(IAIOracle _aiOracle, string memory _modelName, string memory _systemPrompt) OPAgent(_aiOracle, _modelName, _systemPrompt) {}
-
-}
-```
-
-In op agent framework, we support highly customized onchain actions. So you can customize your op agent onchain action by writing any solidity function with the `onlyOPAgentCallback` modifier. In this way, we can support various of onchain actions of the opAgent such as trading on DEX, transfering token, and even deploying a new contract.
-
-Take `contracts/examples/TransferAgent.sol` as an example. It inherits from `OPAgent.sol` and implements the `transferETH` function. When the opAgent calls the `transferETH` function, it will transfer the specified amount of ETH to the specified address.
-
-```js
-// SampleContract.sol
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.13;
-
-import "../OPAgent.sol";
-
-contract TransferAgent is OPAgent {
-
-  event Transfer(uint256 requestId, address to, uint256 amount);
-
-  /// @notice Initialize the contract, binding it to a specified AIOracle contract
-  constructor(IAIOracle _aiOracle, string memory _modelName, string memory _systemPrompt) OPAgent(_aiOracle, _modelName, _systemPrompt) {}
-
-  /**
-   * This function is called by the OP Agent.
-   * It transfers the specified amount of ETH to the specified address.
-   *
-   * @param requestId uint256, the request ID in AI Oracle
-   * @param to address, the address to transfer to
-   * @param amount uint256, the amount to transfer
-   */
-  function transferETH(uint256 requestId, address to, uint256 amount) public onlyOPAgentCallback {
-    // transfer ETH to the specified address
-    (bool success, ) = to.call{value: amount}("");
-    require(success, "Transfer failed");
-    emit Transfer(requestId, to, amount);
-  }
-}
-```
-
-## Deploy your opAgent
-
-Prepare the configuration file `deploy-config.json` in the `config` folder.
-
-```shell
-cp config/deploy-config.example.json config/deploy-config.json
-```
-
-Fill in the `deploy-config.json` file with your own values.
-```shell
+Raw Data for Reference:
 {
-  "network": "base",
-  "aiOracleAddress": "0x0A0f4321214BB6C7811dD8a71cF587bdaF03f0A0",
-  "modelName": "ora/opagent",
-  "systemPrompt": "Your system prompt here",
-  "contractName": "SimpleAgent",
-  "utilsLibAddr": "",
-  "opAgentContract": "",
-  "isVerified": false
-}
-```
-
-- network: the blockchain network to deploy your opAgent. We only support `base` now. Don't change it.
-- aiOracleAddress: the address of the AI Oracle contract. Don't change it.
-- modelName: the name of the model. We only support `ora/opagent` now. Don't change it.
-- systemPrompt: the system prompt for the model. You can customize it. If you don't want to customize it, you can leave it empty as "".
-- contractName: the name of your contract.
-- utilsLibAddr: the address of the utils library. If you want to deploy one by yourself, you can leave it empty as "". If you want to use the default utils library, you can leave it as "0xD06CEfaE49f5c92733Bb4dcF1a7b20482E3D2AE3".
-- opAgentContract: the address of your opAgent contract. If you have not deployed it, you can leave it empty as "". After deployment, we will automatically update it.
-- isVerified: whether the opAgent is verified. If you not sure whether it is verified, you should leave it as false.
-
-After the configuration file is prepared, to deploy your agent, you can create your opAgent by running the following command:
-```shell
-npx hardhat run scripts/createAgent.ts 
-```
-
-## On-chain chat
-
-The on-chat chatting functionality is supported by OAO (Onchain AI Oracle). You can learn more about OAO from [here](https://github.com/ora-io/OAO). You can chat with your opAgent on-chain by calling the `singleChat` function in the OPAgent contract.
-```js
-  function singleChat(
-    string calldata prompt,
-    uint64 gaslimit
-  ) external payable;
-```
-The opAgent will respond back through `aiOracleCallback` function. By default, it will call the following function to respond back to the user:
-```js
-function chatRespond(
-  uint256 requestId,
-  string calldata message
-) public virtual onlyOPAgentCallback {
-  emit OPAgentChatResponse(requestId, message);
-}
-```
-When the opAgent responds with function calling, it will trigger the customized onchain action of the opAgent.
-
-Here is a simple script for you to chat with your opAgent using OAO:
-```shell
-PROMPT="who are u" npx hardhat run scripts/onchainChat.ts 
-```
-
-## Off-chain chat
-
-The off-chain chatting functionality is supported by RMS (Resilient Model Services). You can learn more about RMS from [here](https://rms.ora.io/). For the off-chain chatting, you can get the response by the following command:
-
-Here is a simple script for you to chat with your opAgent through RMS:
-```shell
-npx ts-node ./scripts/offchainChat.ts "who are you?"
-```
-
-After exporting environment variables, you can also directly chat with your agent with curl:
-
-```shell
-curl -X POST "https://api.ora.io/v1/agents/chat" \
-  -H "Authorization: Bearer $ORA_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "model": "ora/opagent",
-    "messages": [{"role": "user", "content": "who are you?"}],
-    "registerHash": $registerHash,
-    "contractAddress": $opAgentContract
-  }'
+  "ethereum main": [
 ```

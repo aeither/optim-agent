@@ -12,7 +12,6 @@ $0.001962 Fee
 registerHash
 0xaf2dde265d8f4f24ffe0af0b87d2578f62e22f27ae30244e61b850e4854d1d75
 
-
 ## Last deployment
 
 ```json
@@ -30,7 +29,7 @@ registerHash
 }
 ```
 
-## Interact 
+## Interact
 
 ```bash
 PROMPT="who are u" npx hardhat run scripts/onchainChat.ts --network base
@@ -58,6 +57,20 @@ PROMPT="i want to withdraw 0.05 USDC on base to 0x28f87aE396812D70E40Dd1f6a10Ed4
 PROMPT="i want to withdraw 0.05 USDC on base to 0x28f87aE396812D70E40Dd1f6a10Ed4FD233688D3" npx hardhat run scripts/onchainChat.ts --network base
 ```
 
+## Get APY
+
+```bash
+npx tsx agent/index.ts
+```
+
 ## Deploy
 
 npx hardhat run scripts/createAgent.ts 
+
+## Steps
+
+npx tsx agent/index.ts
+
+PROMPT="i want to supply 0.1 USDC on base on 0x28f87aE396812D70E40Dd1f6a10Ed4FD233688D3 behalf with 0 as ref code" npx hardhat run scripts/onchainChat.ts --network base
+
+PROMPT="i want to withdraw 0.05 USDC on base to 0x28f87aE396812D70E40Dd1f6a10Ed4FD233688D3" npx hardhat run scripts/onchainChat.ts --network base

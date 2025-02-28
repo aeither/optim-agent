@@ -1,0 +1,17 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "acme"
+main = "src/index.ts"
+compatibility_date = "2024-05-29"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+BOT_INFO = """{
+    "id": 6311833008,
+    "is_bot": true,
+    "first_name": "Acme Bot",
+    "username": "acme_bot",
+    "can_join_groups": true,
+    "can_read_all_group_messages": false,
+    "supports_inline_queries": false,
+    "can_connect_to_business": false
+}"""
