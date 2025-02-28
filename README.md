@@ -27,6 +27,8 @@ Lending Protocol Yield Maximizer is a smart DeFi tool that automatically finds t
 4. **Monitor**: Track your earnings and receive alerts when better opportunities arise
 5. **Withdraw**: Withdraw your assets and earned interest whenever you want
 
+<img width="747" alt="SCR-20250228-kjrf" src="https://github.com/user-attachments/assets/eebd4f46-84f9-490e-926b-aeb3e6c7f7b8" />
+
 ## Benefits
 - **Maximize Returns**: Earn significantly higher yields compared to manual selection
 - **Save Time**: No need to constantly monitor multiple markets and calculate optimal positions
