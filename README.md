@@ -27,12 +27,23 @@ Lending Protocol Yield Maximizer is a smart DeFi tool that automatically finds t
 4. **Monitor**: Track your earnings and receive alerts when better opportunities arise
 5. **Withdraw**: Withdraw your assets and earned interest whenever you want
 
+<img width="747" alt="SCR-20250228-kjrf" src="https://github.com/user-attachments/assets/eebd4f46-84f9-490e-926b-aeb3e6c7f7b8" />
+
 ## Benefits
 - **Maximize Returns**: Earn significantly higher yields compared to manual selection
 - **Save Time**: No need to constantly monitor multiple markets and calculate optimal positions
 - **Reduce Risk**: Our recommendations consider market volatility and liquidity conditions
 - **Capital Efficiency**: Make your crypto assets work harder for you
 
+## OnChain Transactions
+
+https://basescan.org/address/0x28f87ae396812d70e40dd1f6a10ed4fd233688d3#tokentxns
+
+<img width="1210" alt="SCR-20250228-hsue" src="https://github.com/user-attachments/assets/041f66c0-2368-407b-912b-1c14fe2dbd5a" />
+
+## Telegram Bot
+
+<img width="774" alt="SCR-20250228-obvq" src="https://github.com/user-attachments/assets/648914b9-4e2d-4cdd-a8db-099a4a1c1df6" />
 
 ## Get APY
 
