@@ -20,18 +20,17 @@ function readConfig() {
 }
 
 async function sendChatRequest() {
-  // Read configuration from command line arguments or default from config.json
-  const args = process.argv.slice(2);
-
-  const prompt = args[0] || "";
+  // Get prompt from environment variable
+  const prompt = process.env.PROMPT;
   if (!prompt) {
-    console.error("Please provide a prompt.");
+    console.error("Please set the PROMPT environment variable.");
     process.exit(1);
   }
 
-  // Optionally, allow contractAddress and registerHash to be passed from command line or read from config
-  const registerHash = args[1] || readConfig().registerHash;
-  const contractAddress = args[2] || readConfig().opAgentContract;
+  // Read config for contract address and register hash
+  const config = readConfig();
+  const registerHash = config.registerHash;
+  const contractAddress = config.opAgentContract;
 
   // Get the API key from environment variables
   const oraApiKey = process.env.ORA_API_KEY;
@@ -63,6 +62,7 @@ async function sendChatRequest() {
 
     // Log the response
     console.log("messages:", response.data.choices[0].message.content);
+    console.log("function call:", response.data.tool_calls);
   } catch (error) {
     console.error("Error sending request:", error);
     process.exit(1);

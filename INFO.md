@@ -31,3 +31,22 @@ registerHash
 ```
 
 ## Interact 
+
+```bash
+PROMPT="who are u" npx hardhat run scripts/onchainChat.ts --network base
+PROMPT="who are u" npx hardhat run scripts/offchainChat.ts --network base
+```
+
+```bash
+PROMPT="supply 0.1 USDC on base. on 0xBc8Ee037F1E30bF4d7f2A558E708ea1115767F9c behalf with 0 as ref code" npx hardhat run scripts/offchainChat.ts --network base
+```
+
+```bash
+PROMPT="withdraw all USDC on base" npx hardhat run scripts/onchainChat.ts --network base
+
+PROMPT="withdraw all USDC on base" npx hardhat run scripts/offchainChat.ts --network base
+```
+
+```bash
+PROMPT="i want to supply 0.1 USDC on base on 0xBc8Ee037F1E30bF4d7f2A558E708ea1115767F9c behalf with 0 as ref code" npx hardhat run scripts/offchainChat.ts --network base
+```

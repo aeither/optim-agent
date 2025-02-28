@@ -39,7 +39,7 @@ async function main() {
     // If the model fee is in ERC20 tokens, approve the opAgent to spend the fee amount
     const tokenContract = await ethers.getContractAt("IERC20", token);
     console.log("Approving ERC20 token spending for fee:", fee.toString());
-    const approveTx = await tokenContract.approve(opAgent.target, fee);
+    const approveTx = await tokenContract.approve(opAgent.address, fee);
     await approveTx.wait();
     console.log("Token approval successful.");
   }

