@@ -1,3 +1,7 @@
+#  Check INFO for more details
+
+...
+
 # OPAgent: Onchain Perpetual Agent
 
 ![image](/image/ora-sun.png)
