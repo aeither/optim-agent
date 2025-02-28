@@ -1,5 +1,7 @@
 # Lending Protocol Yield Maximizer
 
+Check INFO.md for more instructions
+
 ## Overview
 Lending Protocol Yield Maximizer is a smart DeFi tool that automatically finds the highest APY opportunities across Aave lending markets. Our protocol analyzes real-time interest rates, utilization ratios, and market conditions to recommend the most profitable tokens for supplying to Aave.
 
