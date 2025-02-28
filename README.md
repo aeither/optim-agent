@@ -41,6 +41,9 @@ https://basescan.org/address/0x28f87ae396812d70e40dd1f6a10ed4fd233688d3#tokentxn
 
 <img width="1210" alt="SCR-20250228-hsue" src="https://github.com/user-attachments/assets/041f66c0-2368-407b-912b-1c14fe2dbd5a" />
 
+## Telegram Bot
+
+<img width="774" alt="SCR-20250228-obvq" src="https://github.com/user-attachments/assets/648914b9-4e2d-4cdd-a8db-099a4a1c1df6" />
 
 ## Get APY
 
