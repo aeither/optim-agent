@@ -37,7 +37,7 @@ Lending Protocol Yield Maximizer is a smart DeFi tool that automatically finds t
 
 https://basescan.org/address/0x28f87ae396812d70e40dd1f6a10ed4fd233688d3#tokentxns
 
-<img width="1206" alt="SCR-20250228-hlru" src="https://github.com/user-attachments/assets/dd19e095-637e-482d-9990-952bb229992a" />
+<img width="1210" alt="SCR-20250228-hsue" src="https://github.com/user-attachments/assets/041f66c0-2368-407b-912b-1c14fe2dbd5a" />
 
 
 ## Get APY
