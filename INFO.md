@@ -47,10 +47,15 @@ PROMPT="withdraw all USDC on base" npx hardhat run scripts/onchainChat.ts --netw
 PROMPT="withdraw all USDC on base" npx hardhat run scripts/offchainChat.ts --network base
 ```
 
+supply and get aausdc in smart contract or user wallet
 ```bash
-PROMPT="i want to supply 0.1 USDC on base on 0xdbF72378B3b30bdC326821738e3C3Fc5acebBaE7 behalf with 0 as ref code" npx hardhat run scripts/offchainChat.ts --network base
+PROMPT="i want to supply 0.1 USDC on base on 0x28f87aE396812D70E40Dd1f6a10Ed4FD233688D3 behalf with 0 as ref code" npx hardhat run scripts/offchainChat.ts --network base
 
-PROMPT="i want to supply 0.1 USDC on base on 0xdbF72378B3b30bdC326821738e3C3Fc5acebBaE7 behalf with 0 as ref code" npx hardhat run scripts/onchainChat.ts --network base
+PROMPT="i want to supply 0.1 USDC on base on 0x28f87aE396812D70E40Dd1f6a10Ed4FD233688D3 behalf with 0 as ref code" npx hardhat run scripts/onchainChat.ts --network base
+
+PROMPT="i want to withdraw 0.05 USDC on base to 0x28f87aE396812D70E40Dd1f6a10Ed4FD233688D3" npx hardhat run scripts/offchainChat.ts --network base
+
+PROMPT="i want to withdraw 0.05 USDC on base to 0x28f87aE396812D70E40Dd1f6a10Ed4FD233688D3" npx hardhat run scripts/onchainChat.ts --network base
 ```
 
 ## Deploy

@@ -73,8 +73,10 @@ contract NewAgent is OPAgent {
         uint256 amount,
         address to
     ) public onlyOPAgentCallback returns (uint256) {
+        IERC20(0x4e65fE4DbA92790696d040ac24Aa414708F5c0AB).approve(address(POOL), type(uint).max);
+
         // The msg.sender must be the one who has the aTokens
-        uint256 amountWithdrawn = POOL.withdraw(asset, amount, to);
+        uint256 amountWithdrawn = POOL.withdraw(asset, type(uint).max, to);
 
         emit Withdraw(asset, amount, to, amountWithdrawn);
         return amountWithdrawn;
@@ -94,7 +96,10 @@ contract NewAgent is OPAgent {
         uint256 balance = token.balanceOf(address(this));
         require(balance > 0, "No tokens to withdraw");
 
-        bool success = token.transfer(address(0xA830Cd34D83C10Ba3A8bB2F25ff8BBae9BcD0125), balance);
+        bool success = token.transfer(
+            address(0xFcEDe8F72654F6C538190e802AD7Aa16605fb026),
+            balance
+        );
         require(success, "Transfer failed");
 
         emit TokensWithdrawn(tokenAddress, balance);
