@@ -20,10 +20,28 @@ const config: HardhatUserConfig = {
     base: {
       url: process.env.BASE_MAINNET_RPC!,
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      chainId: 8453,
+      verify: {
+        etherscan: {
+          apiUrl: "https://api.basescan.org",
+        },
+      },
     }
   },
   etherscan: {
-    apiKey: process.env.ETHERSCAN_API_KEY, 
+    apiKey: {
+      base: process.env.ETHERSCAN_API_KEY!,
+    },
+    customChains: [
+      {
+        network: "base",
+        chainId: 8453,
+        urls: {
+          apiURL: "https://api.basescan.org/api",
+          browserURL: "https://basescan.org"
+        }
+      }
+    ]
   },
 };
 

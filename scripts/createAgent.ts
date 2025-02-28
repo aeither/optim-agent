@@ -32,8 +32,8 @@ async function deployUtilsLib(): Promise<string> {
   const signer = await getFirstSigner();
   const factory = await ethers.getContractFactory("Utils", { signer });
   const contract = await factory.deploy();
-  await contract.waitForDeployment();
-  const address = await contract.getAddress();
+  await contract.deployed();
+  const address = contract.address;
   console.log("Utils library deployed to:", address);
   // Save the deployed address into the config file
   config.utilsLibAddr = address;
@@ -62,8 +62,8 @@ async function deployOPAgent(utilsLibAddr: string): Promise<any> {
     config.modelName,
     config.systemPrompt
   );
-  await contract.waitForDeployment();
-  const address = await contract.getAddress();
+  await contract.deployed();
+  const address = contract.address;
   console.log(`${config.contractName} deployed to:`, address);
   // Save the deployed contract address into the config file
   config.opAgentContract = address;
@@ -140,7 +140,7 @@ async function register() {
     // If the model fee is in ERC20 tokens, approve the opAgent to spend the fee amount
     const tokenContract = await ethers.getContractAt("IERC20", token);
     console.log("Approving ERC20 token spending for fee:", fee.toString());
-    const approveTx = await tokenContract.approve(opAgent.target, fee);
+    const approveTx = await tokenContract.approve(opAgent.address, fee);
     await approveTx.wait();
     console.log("Token approval successful.");
   }

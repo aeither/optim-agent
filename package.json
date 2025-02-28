@@ -1,8 +1,8 @@
 {
   "name": "hardhat-project",
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
-    "hardhat": "^2.22.18"
+    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
+    "hardhat": "^2.14.0"
   },
   "dependencies": {
     "@aave/contract-helpers": "^1.32.1",
@@ -14,7 +14,8 @@
     "dayjs": "^1.11.13",
     "dotenv": "^16.4.7",
     "ethers": "^5.8.0",
-    "reflect-metadata": "^0.2.2",
-    "tslib": "^2.8.1"
+    "reflect-metadata": "^0.1.14",
+    "tslib": "^2.8.1",
+    "typescript": "^4.9.5"
   }
 }
