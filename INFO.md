@@ -16,16 +16,16 @@ registerHash
 
 ```json
 {
-    "network": "base",
+  "network": "base",
   "aiOracleAddress": "0x0A0f4321214BB6C7811dD8a71cF587bdaF03f0A0",
   "modelName": "ora/opagent",
   "systemPrompt": "Your system prompt here",
   "contractName": "NewAgent",
-  "utilsLibAddr": "0xF5a63F3Fa2D1fb33bB07B4f5BFf4a845e3b0b7f2",
-  "opAgentContract": "0xBc8Ee037F1E30bF4d7f2A558E708ea1115767F9c",
+  "utilsLibAddr": "0xD06CEfaE49f5c92733Bb4dcF1a7b20482E3D2AE3",
+  "opAgentContract": "0x28f87aE396812D70E40Dd1f6a10Ed4FD233688D3",
   "isVerified": true,
   "hasRegistered": true,
-  "registerHash": "0xec5c41fef106c167abdb4d72f3a074ceaf7c3f6b929b7c6870e816db3cfb7d0a"
+  "registerHash": "0xcb9c56bb806304150c1dfc87f8f0048462e50f5276771b453e34cba450f18aae"
 }
 ```
 
@@ -74,3 +74,9 @@ npx tsx agent/index.ts
 PROMPT="i want to supply 0.1 USDC on base on 0x28f87aE396812D70E40Dd1f6a10Ed4FD233688D3 behalf with 0 as ref code" npx hardhat run scripts/onchainChat.ts --network base
 
 PROMPT="i want to withdraw 0.05 USDC on base to 0x28f87aE396812D70E40Dd1f6a10Ed4FD233688D3" npx hardhat run scripts/onchainChat.ts --network base
+
+## Run Telegram Bot
+
+```bash
+npx tsx telegram-bot/index.ts
+```
