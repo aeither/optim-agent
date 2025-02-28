@@ -29,22 +29,45 @@ bot.command("apy", async (ctx) => {
 bot.on("message:text", async (ctx) => {
   try {
     // Send a waiting message
-    await ctx.reply("Processing your request with OpAgent...");
+    const waitingMsg = await ctx.reply("Processing your request with OpAgent...");
+    
+    // Log the incoming message
+    console.log("Received message:", ctx.message.text);
     
     // Send the user's message to Ora Agent
     const result = await oraAgent.sendPrompt(ctx.message.text);
     
-    // Reply with the agent's response
-    await ctx.reply(result.message);
+    // Log the successful response
+    console.log("Ora Agent response:", result);
     
-    // If there are tool calls, inform the user
-    if (result.toolCalls && result.toolCalls.length > 0) {
-      await ctx.reply("The agent has performed the following actions: " + 
-        JSON.stringify(result.toolCalls, null, 2));
+    // Delete the waiting message
+    await ctx.api.deleteMessage(ctx.chat.id, waitingMsg.message_id);
+    
+    // Reply with the agent's response
+    if (result && result.message) {
+      await ctx.reply(result.message);
+    } else {
+      throw new Error("Empty response from Ora Agent");
     }
-  } catch (error) {
+    
+  } catch (error: any) {
     console.error("Error processing message with OpAgent:", error);
-    await ctx.reply("Sorry, there was an error processing your request with OpAgent.");
+    
+    // Extract the most meaningful error message
+    let errorMessage = "An unexpected error occurred.";
+    
+    if (typeof error === 'string') {
+      errorMessage = error;
+    } else if (error.message) {
+      errorMessage = error.message;
+    } else if (error.response?.data?.detail) {
+      errorMessage = JSON.stringify(error.response.data.detail);
+    }
+    
+    // Clean up the error message for display
+    errorMessage = errorMessage.replace(/^\[|\]$/g, '').replace(/\\"/g, '"');
+    
+    await ctx.reply(`Sorry, there was an error: ${errorMessage}`);
   }
 });
 
